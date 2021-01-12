@@ -1,0 +1,130 @@
+:host {
+    width: 100% !important;
+}
+
+.form{
+  padding: 10px;
+  margin-top: 10px;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  /* font-size: 1rem; */
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  // border-radius: 10px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  &.tag-input{
+    display: inline-block;
+    width: 80px;
+    margin: 5px;
+  }
+  &.component-input{
+    display: inline-block;
+    width: 90%;
+    margin: 5px;
+  }
+  &.component-type-input{
+    display: inline-block;
+    width: 100px;
+    margin: 5px;
+  }
+  &.component-ticker-input{
+    display: inline-block;
+    width: 15%;
+    margin: 5px;
+  }
+}
+
+.form-group{
+  display: inline-block;
+  margin: 5px;
+  width: 90%;
+}
+
+.header-input{
+  display: inline-block;
+  width: 48%;
+  margin: 5px;
+}
+
+.general-input{
+  display: inline-block;
+  width: 20%;
+  margin: 5px;
+  &.tickers-top{
+    vertical-align: top;
+    width: 30%;
+  }
+}
+
+.new-input{
+  display: inline-block;
+  margin: 5px;
+  margin-left: 20px;
+  &.button{
+    width: 90%
+  }
+}
+
+fieldset {
+  background-color: #ffffff;
+  margin-bottom:20px;
+  border: 1px solid #ced4da;
+  // border-radius: 10px;
+  // padding: 0px;
+}
+
+legend {
+  background-color: #39A3E9;
+  color: white;
+  padding: 5px 10px;
+  // border-radius: 10px;
+}
+
+.fieldsetNewComponent{
+  background-color: #ffffff;
+  margin-bottom:20px;
+  // border-radius: 10px;
+  border: 1px solid #ced4da;
+}
+
+.legendNewComponent{
+  background-color: #519405fb;
+  color: white;
+  padding: 5px 10px;
+  // border-radius: 10px;
+}
+
+.btn-add-comp{
+  margin-left:25px;
+  button{
+    background-color: #519405;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-weight: 700;
+    float: right;
+  }
+}
+
+.headerLabel{
+  font-weight: 500;
+}
+
+.scroll{
+  height: 250px;
+  overflow: auto;
+}
+
+.shadow{
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.w-start{
+  width: 130px !important;
+}

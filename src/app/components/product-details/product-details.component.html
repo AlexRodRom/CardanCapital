@@ -1,0 +1,158 @@
+<div>
+  <div [ngClass]="{'form': true,'shadow':true}">
+    <fieldset>
+      <legend class="headerLabel">Product Details</legend>
+        <div class="ml-5 header-input">
+          <div class="form-group">
+            <label class="headerLabel">Isin </label>
+            <label class="form-control">{{this.productSelected.isin}}</label>
+          </div>
+        </div>
+        <div class="ml-5 header-input">
+          <div class="form-group">
+            <label class="headerLabel">Issue Date </label>
+            <label class="form-control">{{this.productSelected.issue_date}}</label>
+          </div>
+        </div>
+        <div class="ml-5">
+          <div class="form-group">
+            <label class="headerLabel">Tags </label>
+            <div>
+              <label class="form-control tag-input" *ngFor="let tag of this.productSelected.tags; let i = index">{{tag}}</label>
+            </div>
+          </div>
+        </div>
+        <fieldset>
+          <legend class="headerLabel">Components</legend>
+          <div class="scroll">
+            <div class="d-flex" *ngFor="let component of this.productSelected.components; index as i;">
+              <div class="ml-5 general-input">
+                <div class="form-group">
+                  <label class="headerLabel">Type </label>
+                  <div>
+                    <label class="form-control component-input">{{component.type}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="ml-5 general-input">
+                <div class="form-group">
+                  <label class="headerLabel">Start Date</label>
+                  <div>
+                    <label class="form-control component-input">{{component.start_date}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="ml-5 general-input">
+                <div class="form-group">
+                  <label class="headerLabel">Value</label>
+                  <div>
+                    <label class="form-control component-input">{{component.value}}</label>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="component.type == 'CB'">
+                <div class="ml-5 general-input tickers-top">
+                  <div class="form-group">
+                    <label class="headerLabel">Tickers</label>
+                    <div>
+                      <label class="form-control component-ticker-input" *ngFor="let ticker of this.productSelected.components[i].tickers; let x = index">{{ticker}}</label>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="component.type == 'ZC'">
+                <div class="ml-5 general-input">
+                  <div class="form-group">
+                    <label class="headerLabel">Quantity</label>
+                    <div>
+                      <label class="form-control component-input">{{component.quantity}}</label>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+      </fieldset>
+    </fieldset>
+  </div>
+
+  <div  [ngClass]="{'shadow':true}">
+  <form #componentForm="ngForm" [ngClass]="{'form': true}" (ngSubmit)="componentForm.form.valid && onSubmitProduct(componentForm)">
+    <fieldset class="fieldsetNewComponent">
+      <legend class="legendNewComponent headerLabel">Add Component</legend>
+        <div class="ml-5 new-input">
+          <div>
+            <label class="headerLabel">Type</label>
+            <select class="form-control component-type-input" name="type" [(ngModel)]="newComponent.type" #type="ngModel">
+              <option value="ZC" selected>ZC</option>
+              <option value="CB">CB</option>
+            </select>
+          </div>
+        </div>
+        <div class="ml-5 new-input">
+          <div>
+            <label class="headerLabel">Value</label>
+            <input type="number" name="value" class="form-control component-type-input" [(ngModel)]="newComponent.value" #value="ngModel"
+              [ngClass]="{ 'is-invalid': componentForm.submitted && value.invalid }" required>
+            <div class="invalid-feedback" *ngIf="componentForm.submitted && value.invalid">
+              <p *ngIf="value.errors.required">Value is required</p>
+            </div>
+          </div>
+        </div>
+        <div class="ml-5 new-input">
+          <div>
+            <label class="headerLabel">Start Date</label>
+            <input type="date" name="start_date" class="form-control component-type-input w-start" [(ngModel)]="newComponent.start_date" #start_date="ngModel"
+            [ngClass]="{ 'is-invalid': componentForm.submitted && start_date.invalid }" required>
+            <div class="invalid-feedback" *ngIf="componentForm.submitted && start_date.invalid">
+              <p *ngIf="start_date.errors.required">Start Date is required</p>
+            </div>
+          </div>
+        </div>
+        <div class="ml-5 new-input">
+          <div>
+            <ng-container *ngIf="newComponent.type=='CB'">
+              <div>
+                <label class="headerLabel">Tickers</label>
+                <input type="text" name="tickers1" class="form-control component-type-input" [(ngModel)]="newComponent.tickers[0]" #tickers1="ngModel"
+                  [ngClass]="{ 'is-invalid': componentForm.submitted && tickers1.invalid }" >
+                <div class="invalid-feedback" *ngIf="componentForm.submitted && tickers1.invalid">
+                  <p *ngIf="tickers1.errors.required">Tickers1 are required</p>
+                </div>
+                <input type="text" name="tickers2" class="form-control component-type-input" [(ngModel)]="newComponent.tickers[1]" #tickers2="ngModel"
+                  [ngClass]="{ 'is-invalid': componentForm.submitted && tickers2.invalid }" >
+                <div class="invalid-feedback" *ngIf="componentForm.submitted && tickers2.invalid">
+                  <p *ngIf="tickers2.errors.required">Tickers2 are required</p>
+                </div>
+                <input type="text" name="tickers3" class="form-control component-type-input" [(ngModel)]="newComponent.tickers[2]" #tickers3="ngModel"
+                  [ngClass]="{ 'is-invalid': componentForm.submitted && tickers3.invalid }" >
+                <div class="invalid-feedback" *ngIf="componentForm.submitted && tickers3.invalid">
+                  <p *ngIf="tickers3.errors.required">Tickers are required</p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="ml-5 new-input">
+          <div>
+            <ng-container *ngIf="newComponent.type=='ZC'">
+              <div>
+                <label class="headerLabel">Quantity</label>
+                <input type="number" name="quantity" class="form-control component-type-input" [(ngModel)]="newComponent.quantity" #quantity="ngModel"
+                  [ngClass]="{ 'is-invalid': componentForm.submitted && quantity.invalid }" >
+                <div class="invalid-feedback" *ngIf="componentForm.submitted && quantity.invalid">
+                  <p *ngIf="quantity.errors.required">Quantity is required</p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="ml-5 new-input button">
+          <div class="btn-add-comp">
+            <button [ngClass]="{'tradeButton':true, 'btn':true, 'btn-success':true, 'btn-block':true}" >Add Component</button>
+          </div>
+        </div>
+      </fieldset>
+  </form>
+  </div>
+</div>
